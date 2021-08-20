@@ -15,9 +15,13 @@ def run(test, params, env):
     """
 
     vm = env.get_vm(params["main_vm"])
+    details = vm.make_create_command()
+    for key, detail in details:
+        print("{} {}".format(key, detail))
     vm.verify_alive()
     timeout = float(params.get("login_timeout", 240))
     session = vm.wait_for_login(timeout=timeout)
     uptime = session.cmd("uptime")
+    print(uptime)
     logging.info("Guest uptime result is: %s", uptime)
     session.close()
