@@ -16,6 +16,7 @@ def run(test, params, env):
 
     vm = env.get_vm(params["main_vm"])
     details = vm.make_create_command()
+    print("Details:")
     for key, detail in details:
         print("{} {}".format(key, detail))
     vm.verify_alive()
